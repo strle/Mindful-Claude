@@ -132,7 +132,6 @@ detect_size
 cleanup() { printf '\033[?25h'; }
 trap cleanup EXIT
 printf '\033[?25l'
-printf '\033[2J'
 
 tick=0
 
@@ -182,12 +181,13 @@ while true; do
     [ "$scaled_half" -lt 1 ] && [ "$progress" -gt 0 ] && scaled_half=1
 
     # === Build frame ===
+    padded=$(printf "%-${PANE_W}s" "")
     frame=""
-    frame+="\033[1;1H\033[K"
+    frame+="\033[1;1H${padded}"
 
     # Clear animation rows 2-8
     for r in 2 3 4 5 6 7 8; do
-        frame+="\033[${r};1H\033[K"
+        frame+="\033[${r};1H${padded}"
     done
 
     case "$STYLE" in
@@ -287,13 +287,13 @@ while true; do
     # Row 10: phase text
     ptxt="$phase..."
     pc=$(((PANE_W - ${#ptxt}) / 2 + 1))
-    frame+="\033[10;1H\033[K\033[10;${pc}H${color}${ptxt}${RESET}"
+    frame+="\033[10;1H${padded}\033[10;${pc}H${color}${ptxt}${RESET}"
 
     # Row 11: exercise name + time
     elapsed_s=$((tick / TICK_RATE))
     info="${EX_NAME} · ${elapsed_s}s"
     ic=$(((PANE_W - ${#info}) / 2 + 1))
-    frame+="\033[11;1H\033[K\033[11;${ic}H${DIM}${COLOR_BRIGHT}${info}${RESET}"
+    frame+="\033[11;1H${padded}\033[11;${ic}H${COLOR_BRIGHT}${info}${RESET}"
 
     # Output
     printf '%b' "$frame"
